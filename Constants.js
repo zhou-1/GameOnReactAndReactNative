@@ -7,6 +7,6 @@ export default Constants = {
     PIPE_WIDTH: 100,
     BIRD_WIDTH: 50,
     BIRD_HEIGHT: 50,
-    AXE_WIDTH: 25,
-    AXE_HEIGHT:25,
+    AXE_WIDTH: 10,
+    AXE_HEIGHT:10,
 }

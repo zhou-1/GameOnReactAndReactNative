@@ -22,7 +22,7 @@ export default class Bird extends Component {
             extrapolate: 'clamp'
         })
 
-        let image = Images['bird' + this.props.pose];
+        let birdimage = Images['bird' + this.props.pose];
 
         return (
             <Animated.Image
@@ -35,7 +35,7 @@ export default class Bird extends Component {
                     transform: [{ rotate: rotation }]
                 }}
                 resizeMode="stretch"
-                source={image} />
+                source={birdimage} />
     );
   }
 }

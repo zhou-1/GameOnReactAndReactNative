@@ -4,7 +4,7 @@ import Matter from "matter-js";
 import { GameEngine } from "react-native-game-engine";
 import Bird from './Bird';
 import Floor from './Floor';
-import Physics, { resetPipes } from './Physics';
+import Physics, { resetPipes, resetnumberofsmaller,getsmaller } from './Physics';
 import Constants from './Constants';
 import Images from './assets/Images';
 import Axe from './axe';
@@ -16,6 +16,7 @@ export default class App extends Component {
         this.state = {
             running: true,
             score: 0,
+            size:0,
         };
 
         this.gameEngine = null;
@@ -62,20 +63,21 @@ export default class App extends Component {
             50,
             { isStatic: true }
         );
-
-
-
-        const axe = Matter.Bodies.rectangle(
-            Constants.MAX_WIDTH / 2+40, Constants.MAX_HEIGHT / 2 + 40, Constants.AXE_WIDTH, Constants.AXE_HEIGHT
-        );
-
-
+        
         Matter.World.add(world, [bird, floor1, floor2,sky1,sky2]);
+
         Matter.Events.on(engine, 'collisionStart', (event) => {
             const collidedpars = event.pairs;
-            console.log('hellow')
-            this.gameEngine.dispatch({ type: "game-over"});
-
+            if (collidedpars[0].bodyA === Physics.getsmaller || collidedpars[0].bodyB === Physics.getsmaller ){
+                Matter.Body.scale(bird,0.9,0.9);
+                this.state.size -= 1;
+            } else {
+                Matter.Body.scale(bird,1.05,1.05);
+                this.state.size += 1;
+            }
+            if (this.state.size > 3) {
+                this.gameEngine.dispatch({ type: "game-over"});
+            }
         });
 
         return {
@@ -83,7 +85,6 @@ export default class App extends Component {
             floor1: { body: floor1, renderer: Floor },
             floor2: { body: floor2, renderer: Floor },
             bird: { body: bird, pose: 1, renderer: Bird},
-            // axe: {body:axe, renderer : Axe}
         }
     }
 
@@ -92,7 +93,8 @@ export default class App extends Component {
             this.setState({
                 running: false
             });
-        } else if (e.type === "score") {
+        }
+         else if (e.type === "score") {
             this.setState({
                 score: this.state.score + 1
             })
@@ -101,10 +103,12 @@ export default class App extends Component {
 
     reset = () => {
         resetPipes();
+        resetnumberofsmaller();
         this.gameEngine.swap(this.setupWorld());
         this.setState({
             running: true,
-            score: 0
+            score: 0,
+            size:0
         });
     }
 
@@ -122,6 +126,8 @@ export default class App extends Component {
                     <StatusBar hidden={true} />
                 </GameEngine>
                 <Text style={styles.score}>{this.state.score}</Text>
+                <Text style={styles.state}>life {3 - this.state.size}</Text>
+
                 {!this.state.running && <TouchableOpacity style={styles.fullScreenButton} onPress={this.reset}>
                     <View style={styles.fullScreen}>
                         <Text style={styles.gameover}>your score is {this.state.score}</Text>
@@ -168,6 +174,16 @@ const styles = StyleSheet.create({
         opacity: 0.8,
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    state:{
+        position: 'absolute',
+        color: 'white',
+        fontSize: 50,
+        top: 30,
+        left: 15,
+        textShadowColor: '#444444',
+        textShadowOffset: { width: 2, height: 2},
+        textShadowRadius: 2,
     },
     score: {
         position: 'absolute',

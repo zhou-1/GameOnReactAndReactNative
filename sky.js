@@ -9,7 +9,7 @@ export default class Floor extends Component {
         const x = this.props.body.position.x - widthofscreen / 2;
         const y = this.props.body.position.y - heightofsky / 2;
 
-        const imageIterations = Math.ceil(widthofscreen / heightoffloor);
+        const imageIterations = Math.ceil(widthofscreen / heightofsky);
 
         return (
             <View

@@ -7,7 +7,8 @@ Recently, here is an explosive news about UFO, "Pentagon officially releases UFO
 As a team interested in this kind of news, we would like to attract more people to pay attention on this. We created a webpage to show videos about UFO, then when people are interested in UFO, they can scan our QR code to play the game made in React Native. Hope this project will be interesting for people.     
 
 ## Video Demo    
-![Here]() is a video demo for our project.     
+![Here](imgs/UFO-Web-App.mp4) is a video demo for our project.      
+Youtube link for our project: 
 
 ## Image Gallery    
 Below is the image for UFO video webpage.     

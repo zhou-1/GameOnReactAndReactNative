@@ -13,7 +13,7 @@ As a team interested in this kind of news, we would like to attract more people 
 Below is the image for UFO video webpage.     
 ![videp_web](imgs/image-web.PNG)    
 Below is the image for UFO game App.      
-![UFO game App](imgs/game-demo.jpg | width=100)         
+![UFO game App](https://github.com/zhou-1/GameOnReactAndReactNative/blob/master/imgs/game-demo.jpg | width=100)         
 
 ## User Story     
 1. As **a fan of alien stuff**, I want to know more abut UFO through video(s) since video has a bunch of introductions and images which can help me understand more.    

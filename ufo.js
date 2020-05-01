@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { View, Image, Animated } from "react-native";
 import Images from './assets/Images';
 
-export default class Bird extends Component {
+export default class ufo extends Component {
     constructor(props){
         super(props);
 
@@ -22,7 +22,7 @@ export default class Bird extends Component {
             extrapolate: 'clamp'
         })
 
-        let image = Images['bird' + this.props.pose];
+        let image = Images['ufo' + this.props.pose];
 
         return (
             <Animated.Image

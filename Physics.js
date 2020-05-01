@@ -1,18 +1,20 @@
 import Matter from "matter-js";
 import PipeTop from './PipeTop';
 import axe from './axe';
+import extra from './extra';
+import Constants from "./Constants";
 
 let tick = 0;
 let pose = 1;
 let pipes = 0;
-let numberofsmaller = 1;
+let numberofboom = 0;
 
 export const randomBetween = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-export const resetnumberofsmaller = () => {
-    numberofsmaller = 1;
+export const resetnumberofboom = () => {
+    numberofboom = 0;
 }
 
 export const resetPipes = () => {
@@ -60,6 +62,21 @@ export const addObstacles = (x, world, entities) => {
 
     let randompip = randomBetween(50,Constants.MAX_HEIGHT - 50);
 
+    // let random = randomBetween(1,10);
+    // if (random >=0) {
+    //     let extra = Matter.Bodies.circle(
+    //         (x - 150),
+    //         200,
+    //         pipeTopHeight/2,
+    //         { isStatic: true,label:"extra"},
+    //     );
+    //     Matter.World.add(world, [extra]);
+    //     entities["extra"] = {
+    //         body: extra, renderer: extra, scored: false
+    //     }
+    //     numberofboom+=1;
+    // }
+
     let obstacle3 = Matter.Bodies.rectangle(
         x,
         randompip,
@@ -68,7 +85,7 @@ export const addObstacles = (x, world, entities) => {
         { isStatic: true}
     );
     
- let getsmaller = Matter.Bodies.circle(
+    let getsmaller = Matter.Bodies.circle(
         (x - 100),
         randompip + 200,
         pipeTopHeight/2,
@@ -76,6 +93,7 @@ export const addObstacles = (x, world, entities) => {
     );
 
     Matter.World.add(world, [obstacle1, obstacle2,obstacle3,getsmaller]);
+
 
     entities["pipe" + (pipes + 1) ] = {
         body: obstacle1, renderer: PipeTop, scored: false
@@ -93,15 +111,30 @@ export const addObstacles = (x, world, entities) => {
         body: getsmaller, renderer: axe, scored: false
     }
     
-    numberofsmaller += 1;
     pipes += 4;
+}
+
+export const shooting = (x, world, entities) => { 
+    let boom = Matter.Bodies.circle(
+        entities.ufo.body.position.x+50,
+        entities.ufo.body.position.y,
+        25,
+        {isStatic:true ,label:"boom"},
+    );
+    Matter.World.add(world, [boom]);
+
+    entities["boom"+(numberofboom + 1)] = {
+        body: boom, renderer: extra, scored: false
+    }
+
+    numberofboom+=1;
 }
 
 
 const Physics = (entities, { touches, time, dispatch }) => {
     let engine = entities.physics.engine;
     let world = entities.physics.world;
-    let bird = entities.bird.body;
+    let ufo = entities.ufo.body;
     // let axe = entities.axe.body;
     
     let hadTouches = false;
@@ -115,25 +148,42 @@ const Physics = (entities, { touches, time, dispatch }) => {
             }
 
             hadTouches = true;
-            Matter.Body.setVelocity( bird, {
-                x: bird.velocity.x,
+            Matter.Body.setVelocity( ufo, {
+                x: ufo.velocity.x,
                 y: -10
             });
         }
+        
+        shooting((Constants.MAX_WIDTH) - (Constants.PIPE_WIDTH / 2), world, entities);
+
+
+
+        if (ufo.position.x > Constants.MAX_WIDTH) {
+            Matter.Body.translate(ufo, {x: -Constants.MAX_WIDTH / 2, y: 0});
+        };
+
 
     });
-    if (bird.position.x > Constants.MAX_WIDTH) {
-        Matter.Body.translate(bird, {x: -Constants.MAX_WIDTH / 2, y: 0});
-    }
+    
 
     Matter.Engine.update(engine, time.delta);
+
+
+    // Matter.Events.on(engine, 'collisionStart', (event) => {
+    //     const collidedpars = event.pairs;
+    //     if (collidedpars[0].bodyA.label !== "boom" && collidedpars[0].bodyB.label !== "boom" ){
+    //         delete(collidedpars[0].bodyA);
+    //         delete(collidedpars[0].bodyB);
+    //     }
+
+    // });
 
     Object.keys(entities).forEach(key => {
         if (key.indexOf("pipe") === 0 && entities.hasOwnProperty(key)){
             Matter.Body.translate(entities[key].body, {x: -2, y: 0});
 
             if (key.indexOf("pipe") !== -1 && parseInt(key.replace("pipe", "")) % 4 === 0 ){
-                if (entities[key].body.position.x <= bird.position.x && !entities[key].scored){
+                if (entities[key].body.position.x <= ufo.position.x && !entities[key].scored){
                     entities[key].scored = true;
                     dispatch({ type: "score" });
                 }
@@ -147,16 +197,23 @@ const Physics = (entities, { touches, time, dispatch }) => {
 
                     addObstacles((Constants.MAX_WIDTH * 2) - (Constants.PIPE_WIDTH / 2), world, entities);
                 }
-            }
-            
+            } 
+        }
+            else  if (key.indexOf("boom") === 0) {
+                Matter.Body.translate(entities[key].body, {x: 10, y: 0});
 
-        } else if (key.indexOf("floor") === 0){
+                if (entities[key].body.position.x > Constants.MAX_WIDTH-50){
+                    delete(entities[key]);
+                }
+
+            }            
+            else if (key.indexOf("floor") === 0){
             if (entities[key].body.position.x <= -1 * Constants.MAX_WIDTH / 2){
                 Matter.Body.setPosition(entities[key].body, { x: Constants.MAX_WIDTH + (Constants.MAX_WIDTH / 2), y: entities[key].body.position.y})
             } else {
                 Matter.Body.translate(entities[key].body, {x: -2, y: 0});
             }
-        }
+        } 
     })
 
     tick += 1;
@@ -165,7 +222,7 @@ const Physics = (entities, { touches, time, dispatch }) => {
         if (pose > 3){
             pose = 1;
         }
-        entities.bird.pose = pose;
+        entities.ufo.pose = pose;
     }
 
     return entities;

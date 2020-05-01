@@ -63,4 +63,10 @@ JavaScript
 matter-js   
   
   
+## References    
+1. ReactJS. https://reactjs.org/     
+2. Video React. https://video-react.js.org/    
+3. React Native. https://github.com/facebook/react-native    
+4. Flappy bird game. https://flappybird.io/     
+
 

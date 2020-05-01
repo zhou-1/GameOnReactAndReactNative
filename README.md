@@ -1,7 +1,8 @@
 # REACT_Project
 A project for EC500 about Web and App.          
-A webpage in React for displaying video about actual UFO.       
-An App for playing UFO game in React Native.      
+1. A webpage in React for displaying video about actual UFO.       
+2. An App for playing UFO game in React Native.       
+    
 Recently, here is an explosive news about UFO, "Pentagon officially releases UFO videos". Video can be viewed [here](https://www.youtube.com/watch?v=mW9g_gx2BqM)      
 As a team interested in this kind of news, we would like to attract more people to pay attention on this. We created a webpage to show videos about UFO, then when people are interested in UFO, they can scan our QR code to play the game made in React Native. Hope this project will be interesting for people.     
 

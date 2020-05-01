@@ -36,13 +36,19 @@ Displayed a video player in ReactJS. This component is used to fluently display 
 - Hide & Show function in ReactJS     
 Built a function to hide and show title and image. This component is used to hide QR code if people have no interests in Game but only video.    
 - HTTP client in ReactNative     
-axios library is used to make HTTP Calls      
-- 
+Used axios library to make HTTP Calls.           
+- Simulate gravity function    
+Built a simulate gravity function for bird. Initially we give a gravity to UFO, it will drop down because of gravity; every click will decrease the gravity temporarily which causes bird to fly up.       
+- Automatic generate obstacle function    
+Created a program that generate obstacles automatically. Obstacle's size and place are random which is determined by our program.       
 
 ## Tech     
 React    
-ReactNative     
+ReactNative  
+React-native-game-engine   
+Axios   
 JavaScript     
-Axios    
-
+matter-js   
+  
+  
 

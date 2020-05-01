@@ -8,7 +8,7 @@ As a team interested in this kind of news, we would like to attract more people 
 
 ## Video Demo    
 ![Here](imgs/UFO-Web-App.mp4) is a video demo for our project.      
-Youtube link for our project: 
+Youtube link for our project: https://www.youtube.com/watch?v=QFjD2J-UhEo&feature=youtu.be    
 
 ## Image Gallery    
 Below is the image for UFO video webpage.     

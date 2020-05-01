@@ -10,8 +10,10 @@ As a team interested in this kind of news, we would like to attract more people 
 ![Here]() is a video demo for our project.     
 
 ## Image Gallery    
-Below is the image for video webpage.     
+Below is the image for UFO video webpage.     
 ![videp_web](imgs/image-web.PNG)    
+Below is the image for UFO game App.      
+![UFO game App]()     
 
 ## User Story     
 1. As **a fan of alien stuff**, I want to know more abut UFO through video(s) since video has a bunch of introductions and images which can help me understand more.    

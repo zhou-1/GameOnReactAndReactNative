@@ -2,14 +2,16 @@
 A project for EC500 about Web and App.          
 A webpage in React for displaying video about actual UFO.       
 An App for playing UFO game in React Native.      
-
 Recently, here is an explosive news about UFO, "Pentagon officially releases UFO videos". Video can be viewed [here](https://www.youtube.com/watch?v=mW9g_gx2BqM)      
 As a team interested in this kind of news, we would like to attract more people to pay attention on this. We created a webpage to show videos about UFO, then when people are interested in UFO, they can scan our QR code to play the game made in React Native. Hope this project will be interesting for people.     
 
+## Video Demo    
+![Here]() is a video demo for our project.   
+
 ## User Story     
-As **a fan of alien stuff**, I want to know more abut UFO through video(s) since video has a bunch of introductions and images which can help me understand more.    
-As **a normal person who has no idea about UFO**, a brief video will be enough for me and I would be appreciated if I can play a small game on phone which can help me not too nervous.     
-As **a developer who has interests in React and React Native**, I would like to learn video player in React-web and how to build game in React Native.    
+1. As **a fan of alien stuff**, I want to know more abut UFO through video(s) since video has a bunch of introductions and images which can help me understand more.    
+2. As **a normal person who has no idea about UFO**, a brief video will be enough for me and I would be appreciated if I can play a small game on phone which can help me not too nervous.     
+3. As **a developer who has interests in React and React Native**, I would like to learn video player in React-web and how to build game in React Native.    
 
 ## Set up     
 Download our project.    
@@ -28,6 +30,19 @@ The Application Runs on localhost:3000
 Then you can also access to phone App through QR code in webpage.     
 
 
-## About this project    
+## Minimum Valuable Product    
+>- Video Player in ReactJS     
+Displayed a video player in ReactJS. This component is used to fluently display video(s) in any link especially for Youtube video.     
+>- Hide & Show function in ReactJS     
+Built a function to hide and show title and image. This component is used to hide QR code if people have no interests in Game but only video.    
+>- HTTP client in ReactNative     
+axios library is used to make HTTP Calls      
+>- 
+
+## Tech     
+React    
+ReactNative     
+JavaScript     
+Axios    
 
 

@@ -16,7 +16,7 @@ export default class App extends Component {
         this.state = {
             running: true,
             score: 0,
-            size:-10,
+            life: 10,
         };
 
         this.gameEngine = null;
@@ -69,13 +69,16 @@ export default class App extends Component {
         Matter.Events.on(engine, 'collisionStart', (event) => {
             const collidedpars = event.pairs;
             if (collidedpars[0].bodyA.label !== "smaller" && collidedpars[0].bodyB.label !== "smaller" ){
-                this.state.size += 1;
+                this.state.life -= 1;
             } else {
-                this.state.size -= 1;
+                this.state.life += 1;
             }
-            if (this.state.size > 2) {
+            if (this.state.life <= 0) {
                 this.gameEngine.dispatch({ type: "game-over"});
             }
+            if (bird.position.x < 0) {
+                Matter.Body.translate(bird, {x: Constants.MAX_WIDTH / 2, y: 0});
+            } 
         });
 
         return {
@@ -106,7 +109,7 @@ export default class App extends Component {
         this.setState({
             running: true,
             score: 0,
-            size:0
+            life:10,
         });
     }
 
@@ -124,7 +127,7 @@ export default class App extends Component {
                     <StatusBar hidden={true} />
                 </GameEngine>
                 <Text style={styles.score}>{this.state.score}</Text>
-                <Text style={styles.state}>life {3 - this.state.size}</Text>
+                <Text style={styles.state}>life {this.state.life}</Text>
 
                 {!this.state.running && <TouchableOpacity style={styles.fullScreenButton} onPress={this.reset}>
                     <View style={styles.fullScreen}>

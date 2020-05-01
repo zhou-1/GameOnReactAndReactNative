@@ -35,7 +35,7 @@ export const generatePipes = () => {
 export const addObstacles = (x, world, entities) => {
     let [pipe1Height, pipe2Height] = generatePipes();
 
-    let pipeTopWidth = Constants.PIPE_WIDTH + 20;
+    let pipeTopWidth = Constants.PIPE_WIDTH;
     let pipeTopHeight = 25;
 
     pipe1Height = pipe1Height - pipeTopHeight;
@@ -68,10 +68,9 @@ export const addObstacles = (x, world, entities) => {
         { isStatic: true}
     );
     
- let getsmaller = Matter.Bodies.rectangle(
+ let getsmaller = Matter.Bodies.circle(
         (x - 100),
         randompip + 200,
-        pipeTopWidth/2,
         pipeTopHeight/2,
         { isStatic: true,label:"smaller"},
     );
@@ -123,6 +122,9 @@ const Physics = (entities, { touches, time, dispatch }) => {
         }
 
     });
+    if (bird.position.x > Constants.MAX_WIDTH) {
+        Matter.Body.translate(bird, {x: -Constants.MAX_WIDTH / 2, y: 0});
+    }
 
     Matter.Engine.update(engine, time.delta);
 
@@ -146,6 +148,7 @@ const Physics = (entities, { touches, time, dispatch }) => {
                     addObstacles((Constants.MAX_WIDTH * 2) - (Constants.PIPE_WIDTH / 2), world, entities);
                 }
             }
+            
 
         } else if (key.indexOf("floor") === 0){
             if (entities[key].body.position.x <= -1 * Constants.MAX_WIDTH / 2){
@@ -157,7 +160,7 @@ const Physics = (entities, { touches, time, dispatch }) => {
     })
 
     tick += 1;
-    if (tick % 5 === 0){
+    if (tick % 8 === 0){
         pose = pose + 1;
         if (pose > 3){
             pose = 1;

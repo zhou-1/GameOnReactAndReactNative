@@ -48,6 +48,11 @@ Used axios library to make HTTP Calls.
 Built a simulate gravity function for bird. Initially we give a gravity to UFO, it will drop down because of gravity; every click will decrease the gravity temporarily which causes bird to fly up.       
 - Automatic generate obstacle function    
 Created a program that generate obstacles automatically. Obstacle's size and place are random which is determined by our program.       
+- Collision response
+When collision between ufo and enemies happens the motion of the ufo will change which make the game harder than it seems, even though you may have many lives left, game may over because of bouncing between two obstacles.
+- More intersting feature
+Now it's easy to add more interesting features to the game while still need more time to figure out what can make the game fancier!
+
 
 ## Tech     
 React    

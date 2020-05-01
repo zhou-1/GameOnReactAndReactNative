@@ -20,7 +20,7 @@ export default class PipeTop extends Component {
                     height: height,
                 }}
                 resizeMode="stretch"
-                source={Images.pipeTop} />
+                source={Images.spaceship01} />
     );
   }
 }

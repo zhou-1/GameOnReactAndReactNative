@@ -73,7 +73,7 @@ export const addObstacles = (x, world, entities) => {
         randompip + 200,
         pipeTopWidth/2,
         pipeTopHeight/2,
-        { isStatic: true}
+        { isStatic: true,label:"smaller"},
     );
 
     Matter.World.add(world, [obstacle1, obstacle2,obstacle3,getsmaller]);

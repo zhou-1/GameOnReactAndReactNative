@@ -7,7 +7,7 @@ import Floor from './Floor';
 import Physics, { resetPipes, resetnumberofsmaller,getsmaller } from './Physics';
 import Constants from './Constants';
 import Images from './assets/Images';
-import Axe from './axe';
+import sky from './sky';
 
 export default class App extends Component {
     constructor(props){
@@ -16,7 +16,7 @@ export default class App extends Component {
         this.state = {
             running: true,
             score: 0,
-            size:0,
+            size:-10,
         };
 
         this.gameEngine = null;
@@ -68,14 +68,12 @@ export default class App extends Component {
 
         Matter.Events.on(engine, 'collisionStart', (event) => {
             const collidedpars = event.pairs;
-            if (collidedpars[0].bodyA === Physics.getsmaller || collidedpars[0].bodyB === Physics.getsmaller ){
-                Matter.Body.scale(bird,0.9,0.9);
-                this.state.size -= 1;
-            } else {
-                Matter.Body.scale(bird,1.05,1.05);
+            if (collidedpars[0].bodyA.label !== "smaller" && collidedpars[0].bodyB.label !== "smaller" ){
                 this.state.size += 1;
+            } else {
+                this.state.size -= 1;
             }
-            if (this.state.size > 3) {
+            if (this.state.size > 2) {
                 this.gameEngine.dispatch({ type: "game-over"});
             }
         });

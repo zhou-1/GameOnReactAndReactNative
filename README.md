@@ -7,13 +7,14 @@ Recently, here is an explosive news about UFO, "Pentagon officially releases UFO
 As a team interested in this kind of news, we would like to attract more people to pay attention on this. We created a webpage to show videos about UFO, then when people are interested in UFO, they can scan our QR code to play the game made in React Native. Hope this project will be interesting for people.     
 
 ## Video Demo    
-![Here]() is a video demo for our project.     
+[Here](imgs/UFO-Web-App.mp4) is a video demo for our project.      
+Youtube link for our project: https://www.youtube.com/watch?v=QFjD2J-UhEo&feature=youtu.be    
 
 ## Image Gallery    
 Below is the image for UFO video webpage.     
 ![videp_web](imgs/image-web.PNG)    
-Below is the image for UFO game App.      
-![UFO game App]()     
+Below is the image for UFO game App.           
+<img src="https://github.com/zhou-1/GameOnReactAndReactNative/blob/master/imgs/game-demo.jpg" alt="UFO game App" width="300">
 
 ## User Story     
 1. As **a fan of alien stuff**, I want to know more abut UFO through video(s) since video has a bunch of introductions and images which can help me understand more.    
@@ -48,6 +49,11 @@ Used axios library to make HTTP Calls.
 Built a simulate gravity function for bird. Initially we give a gravity to UFO, it will drop down because of gravity; every click will decrease the gravity temporarily which causes bird to fly up.       
 - Automatic generate obstacle function    
 Created a program that generate obstacles automatically. Obstacle's size and place are random which is determined by our program.       
+- Collision response
+When collision between ufo and enemies happens the motion of the ufo will change which make the game harder than it seems, even though you may have many lives left, game may over because of bouncing between two obstacles.
+- More intersting feature
+Now it's easy to add more interesting features to the game while still need more time to figure out what can make the game fancier!
+
 
 ## Tech     
 React    
@@ -58,4 +64,10 @@ JavaScript
 matter-js   
   
   
+## References    
+1. ReactJS. https://reactjs.org/     
+2. Video React. https://video-react.js.org/    
+3. React Native. https://github.com/facebook/react-native    
+4. Flappy bird game. https://flappybird.io/     
+
 

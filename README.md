@@ -31,13 +31,13 @@ Then you can also access to phone App through QR code in webpage.
 
 
 ## Minimum Valuable Product    
->- Video Player in ReactJS     
+- Video Player in ReactJS     
 Displayed a video player in ReactJS. This component is used to fluently display video(s) in any link especially for Youtube video.     
->- Hide & Show function in ReactJS     
+- Hide & Show function in ReactJS     
 Built a function to hide and show title and image. This component is used to hide QR code if people have no interests in Game but only video.    
->- HTTP client in ReactNative     
+- HTTP client in ReactNative     
 axios library is used to make HTTP Calls      
->- 
+- 
 
 ## Tech     
 React    
